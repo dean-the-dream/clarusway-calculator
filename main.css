@@ -88,6 +88,10 @@ body{
     background: none;
 }
 
+.button, .zero-button {
+    transition: background-color .5s ease-out;
+}
+
 .light-grey:hover{
     background-color: #bebebe;
 }
@@ -95,5 +99,5 @@ body{
     background-color: #6b6b6b;
 }
 .orange:hover{
-    background-color: #f7bd60;
+    background-color: #ffca75;
 }
