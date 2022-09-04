@@ -41,9 +41,11 @@ body{
 
 .light-grey{
     background-color: #A5A5A5;
+    
 }
 .dark-grey{
     background-color: #333333;
+    ;
 }
 .orange{
     background-color: #FE9F06;
@@ -72,6 +74,18 @@ body{
     font-size: 2rem;
     margin:10px;
     margin: 12px; 
+}
+
+.zero{
+    display:flex;
+    height: 90px;
+    width: 90px;
+    align-items:center;
+    justify-content: center;
+    border-radius: 50%;
+    margin:10px;
+    font-size: 2.5rem;
+    background: none;
 }
 
 .light-grey:hover{
