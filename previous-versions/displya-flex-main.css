@@ -36,11 +36,12 @@ body{
 .number-window p{
     margin: 0 10px;
     font-size: 5rem;
-    font-weight: lighter;
+    font-weight: light;
 }
 
 .light-grey{
     background-color: #A5A5A5;
+    color: black;
     
 }
 .dark-grey{
