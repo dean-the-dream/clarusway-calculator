@@ -4,6 +4,25 @@
     box-sizing: border-box;
 }
 
-body{
+.calc-body{
+    border: solid black;
+    width: 700px;
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+}
+
+header h1{
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.screen{
+    height: 20px;
+}
+
+.numpad{
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
 }
