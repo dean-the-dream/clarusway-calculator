@@ -28,7 +28,9 @@ header h1{
 }
 
 .screen{
+    display: flex;
     height: 20%;
+    align-content: center;
 }
 
 .numpad{
@@ -54,17 +56,36 @@ header h1{
 
 .zero{
     grid-column: 1/ span 2;
+    /* width: 190px;
+    border-radius: 0;
+    border-top-right-radius: 35% ;
+    border-bottom-right-radius: 35% ; */
 }
 
 .light-grey{
     background-color: #A5A5A5;
-    color: black;
-    
+    color: black;   
 }
+
+.light-grey:hover{
+    background-color: #d8d8d8;
+    color: black;   
+}
+
 .dark-grey{
     background-color: #333333;
-    ;
+    
 }
+
+.dark-grey:hover{
+    background-color: #646464;
+    
+}
+
 .orange{
     background-color: #FE9F06;
+}
+
+.orange:hover{
+    background-color: #ffbf58;
 }
