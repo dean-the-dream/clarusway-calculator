@@ -108,7 +108,9 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
                 equation.splice(equation.length - 2,1) // remove the second to last item
         } else if(((equation[1] === "X") ||( equation[1] === "/")) && equation.length > 3){ // if the second item is multiply or divide
                 calculate(equation);
-        } 
+        } else if((e.target.innerText === "+" ||(e.target.innerText === "-")) && equation.length > 3){
+                calculate(equation);
+        }
         // } else if ( equation.lenghth > 3){
         //     if((equation[equation.length - 1] === "+") || (equation[equation.length - 1] === "-")){ //if the last operation is a plus or a minus
         //         calculate(equation);
@@ -131,9 +133,9 @@ function calculate (x){
         equation =  [result];
         formattedNumber = [];
     } else if (x.length == 4){
-        result = twoNum(x);
-        screen.innerText = result;
-        equation =  [result];
+        result = [twoNum(x), x[3]];
+        screen.innerText = result[0];
+        equation =  [...result];
         formattedNumber = [];
     //else if (x.length == 3){
     //     if ((isNaN(x[2]))){
