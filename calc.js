@@ -41,7 +41,7 @@ function enterNumber (e) { //tells js what to do when numbers are entered, based
         } 
         clearButton.innerText = "C";
 
-        // if(((equation[1] === "X") ||( equation[1] === "/")) && (equation.length == 2)){ // if the second item is multiply or divide
+        // if(((equation[1] === "X") ||( equation[1] === "÷")) && (equation.length == 2)){ // if the second item is multiply or divide
         //     if(formattedNumber.length > 0){
         //         equation.push(parseFloat(formattedNumber.join("")));
         //         formattedNumber = [];
@@ -107,7 +107,7 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
             }
         } else if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
                 equation.splice(equation.length - 2,1) // remove the second to last item
-        } else if(((equation[1] === "X") ||( equation[1] === "/")) && equation.length > 3){ // if the second item is multiply or divide
+        } else if(((equation[1] === "X") ||( equation[1] === "÷")) && equation.length > 3){ // if the second item is multiply or divide
                 calculate(equation);
         } else if((e.target.innerText === "+" ||(e.target.innerText === "-")) && equation.length > 3){
                 calculate(equation);
@@ -166,7 +166,7 @@ function twoNum (x) {
            return x[0] - x[2]
         case "X":
            return x[0] * x[2]
-        case "/":
+        case "÷":
            return x[0] / x[2]
     }
 
@@ -180,7 +180,7 @@ function plusEqual (x) {
            return x[0] -= x[0]
         case "X":
            return x[0] *= x[0]
-        case "/":
+        case "÷":
            return x[0] /= x[0]
     }
 }
