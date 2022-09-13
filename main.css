@@ -20,6 +20,7 @@ body{
     color: white;
     margin: 0 auto;
     border-radius: 30px;
+    padding: 10px;
 }
 
 header h1{
@@ -27,11 +28,14 @@ header h1{
     margin: 0 auto;
 }
 
-.screen{
-    display: flex;
+.screen {
+    display:flex;
     height: 20%;
-    align-content: center;
+    justify-content: right;
+    align-items: flex-end;
+    font-size: 4rem;
 }
+
 
 .numpad{
     display: grid;
