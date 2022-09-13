@@ -64,6 +64,7 @@ function engageOperation(x) { //change the state of the calculator when the user
     resetOperation();
     if(!(x.className.includes("equal"))){
         x.style = `background-color: white; color: #FE9F06`
+        
     }
     operationIsPressed = true; 
 }

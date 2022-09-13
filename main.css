@@ -62,10 +62,14 @@ header h1{
 
 .zero{
     grid-column: 1/ span 2;
-    /* width: 190px;
+    width: 195px;
     border-radius: 0;
-    border-top-right-radius: 35% ;
-    border-bottom-right-radius: 35% ; */
+    border-top-right-radius: 100px ;
+    border-bottom-right-radius: 100px ; 
+    border-top-left-radius: 100px ;
+    border-bottom-left-radius: 100px ; 
+    justify-content: left;
+    padding: 30px
 }
 
 .light-grey{

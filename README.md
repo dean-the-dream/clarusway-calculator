@@ -43,8 +43,6 @@
 
 * % isn't functional 
 * +/- isn't functional
-* = doesn't work for more than 2 digits
-* the 0 digit should stretch to take up more space
 
 
 
