@@ -106,7 +106,7 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
             }
         } else if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
                 equation.splice(equation.length - 2,1) // remove the second to last item
-        } else if((equation[1] === "X") ||( equation[1] === "/")){ // if the second item is multiply or divide
+        } else if(((equation[1] === "X") ||( equation[1] === "/")) && equation.length > 3){ // if the second item is multiply or divide
                 calculate(equation);
         } 
         // } else if ( equation.lenghth > 3){
