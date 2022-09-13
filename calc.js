@@ -1,6 +1,6 @@
 const screen = document.querySelector(".screen p");
 let display = "0";
-const equation = [];
+let equation = [];
 const numberpad = document.querySelector(".numpad");
 const clearButton = document.querySelector(".clear");
 let formattedNumber = ["0"];
@@ -41,7 +41,7 @@ function enterNumber (e) {
             }
             
             
-            equation.push(formattedNumber.join(""));
+            // equation.push(formattedNumber.join(""));
             
 
             clearButton.innerText = "C";
@@ -76,11 +76,41 @@ function pressClear (x) {
 function enterOperation (e) {
     if(e.target.className.includes("operation")){ 
         operationIsPressed = true;
-        equation.push(parseFloat(formattedNumber.join("")));
+        e.target.style = `background-color: white; color: #FE9F06 ` 
+        isNaN(parseFloat(formattedNumber.join(""))) ?  null : equation.push(parseFloat(formattedNumber.join("")));
         equation.push(e.target.innerText)
         formattedNumber = [];
-        console.log(operationIsPressed)
+
+        if(e.target.innerText == "=") {
+            let result = 0
+            if(equation.length == 2){
+                result = equation[0]
+                screen.innerText = result
+                equation = [equation[0]];
+                formattedNumber = [];
+            } else if (equation.length == 4){
+                result = twoNum(equation)
+                screen.innerText = result;
+                equation = [result];
+                formattedNumber = [];
+            }
+        }
+        console.log(equation)
     }
+}
+
+function twoNum (x) {
+    switch (x[1]) {
+        case "+":
+           return x[0] + x[2]
+        case "-":
+           return x[0] - x[2]
+        case "X":
+           return x[0] * x[2]
+        case "/":
+           return x[0] / x[2]
+    }
+        
 }
 
 numberpad.addEventListener("click", enterNumber)
