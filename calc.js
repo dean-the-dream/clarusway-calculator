@@ -85,51 +85,56 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
         engageOperation(e.target);
         (formattedNumber[0] === "0") ? formattedNumber.shift() : null;
         if(formattedNumber.length > 0){
-            equation.push(formattedNumber.join(""));
+            equation.push(parseFloat(formattedNumber.join("")));
             formattedNumber = [];
         }
         equation.push(e.target.innerText);
 
         if(isNaN((parseFloat(equation[0])))){ // if the first array item is not a number
             equation.shift(); // remove the first item 
-        } 
-        else if((e.target.innerText === "=") && equation.length > 1){ //if user pressed equal and there is more than one character
-            equation.push(e.target.innerText) // add equal to the equation array
+        } else if ((!isNaN(equation[0])) && (!isNaN(equation[1]))) {
+            equation.shift();
+        } else if ((e.target.innerText === "=")){ //if user pressed equal 
             calculate(equation); 
-        } else if((equation.length > 2)){ // if if the equation has more than one item
-            if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
+        } else if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
                 equation.splice(equation.length - 2,1) // remove the second to last item
-            } else if((equation[1] === "X") ||( equation[1] === "/")){ // if the second item is multiply or divide
+        } else if((equation[1] === "X") ||( equation[1] === "/")){ // if the second item is multiply or divide
                 calculate(equation);
-            } 
-        } else if ( equation.lenghth > 3){
-            if((equation[equation.length - 1] === "+") || (equation[equation.length - 1] === "-")){ //if the last operation is a plus or a minus
-                calculate(equation);
-            } else if (equation.length > 4) {
-            calculate(equation)
-            }
         } 
-        console.log(formattedNumber)
-        console.log(equation)
+        // } else if ( equation.lenghth > 3){
+        //     if((equation[equation.length - 1] === "+") || (equation[equation.length - 1] === "-")){ //if the last operation is a plus or a minus
+        //         calculate(equation);
+        //     } else if (equation.length > 4) {
+        //     calculate(equation)
+        //     }
+        // } 
+        // console.log({formattedNumber})
+         console.log({equation})
     }
 }
 
 
 function calculate (x){
-    if(x.length = 2){
-        result = equation[0];
-        equation = [result];
+    console.log({x} + " - calculate")
+    let result = 0;
+    if(x.length == 2) {
+        result = x[0];
+        screen.innerText = result;
+        equation =  [result];
         formattedNumber = [];
-    } else {
-        result = "It Works";
-        equation = [result];
-        formattedNumber = []
-
-        // const result = twoNum(x)
-        // screen.innerText = result;
-        // equation = [result];
+    } else if (x.length == 3){
+        if ((isNaN(x[2]))){
+            result = plusEqual(x);
+            screen.innerText = result;
+            equation =  [result];
+            formattedNumber = [];
+        }
+    } else if (x.length == 4){
+        result = twoNum(x);
+        screen.innerText = result;
+        equation =  [result];
+        formattedNumber = [];
     }
-    
 }
 
 function twoNum (x) {
@@ -144,6 +149,19 @@ function twoNum (x) {
            return x[0] / x[2]
     }
 
+}
+
+function plusEqual (x) {
+    switch (x[1]) {
+        case "+":
+           return x[0] += x[0]
+        case "-":
+           return x[0] -= x[0]
+        case "X":
+           return x[0] *= x[0]
+        case "/":
+           return x[0] /= x[0]
+    }
 }
 
 function threeNum (x) {
