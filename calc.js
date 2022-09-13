@@ -124,34 +124,37 @@ function calculate (x){
     (x[x.length-1] === "=") ? x.pop() : null; 
     console.log({...x})
     if(x.length == 1) {
-    result = x[0];
-    screen.innerText = result.toLocaleString();
-    equation =  [result];
-    formattedNumber = [];
-    } else if (x.length == 2) {
+        console.log("length is 1")
+        result = x[0];
+        screen.innerText = result.toLocaleString();
+        equation =  [result];
+        formattedNumber = [];
+    } else if(x.length == 2) {
+        console.log("length is 2")
         result = plusEqual(x);
         screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
-    }else if (x.length == 3){
+    } else if (x.length == 3) {
+        console.log("length is 3")
         result = twoNum(x);
         screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
     } else if (x.length == 4){
-        if(isNaN(x[3])) {
-            result = [twoNum(x), x[3]];
-            console.log(result)
-            screen.innerText = result[0].toLocaleString();
-            equation =  [...result];
-            formattedNumber = [];
-        } else {
-            console.log("it here")
-           threeNum(x); 
-        }
-        
-    
-    }    
+        console.log("length is 4 with operation")
+        result = [twoNum(x), x[3]];
+        console.log(result)
+        screen.innerText = result[0].toLocaleString();
+        equation =  [...result];
+        formattedNumber = []; 
+    }  else {
+        console.log("length is 5 with")
+        result = threeNum(x);
+        console.log(result)
+        screen.innerText = result.toLocaleString();
+        formattedNumber = []; 
+    }
 }
 
 function twoNum (x) {
@@ -182,9 +185,10 @@ function plusEqual (x) {
 }
 
 function threeNum (y) {
-    let reduce = y.slice(2,3)
+    let reduce = y.slice(2,5)
+    console.log("this is reduce")
     console.log(reduce)
-    return twoNum(reduce)
+    return twoNum([...y.slice(0,2), twoNum(reduce)])
 }
 
 numberpad.addEventListener("click", enterNumber)
