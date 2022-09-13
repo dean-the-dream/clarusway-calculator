@@ -110,46 +110,48 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
                 calculate(equation);
         } else if((e.target.innerText === "+" ||(e.target.innerText === "-")) && equation.length > 3){
                 calculate(equation);
+        } else if((equation.length > 3) && (!isNaN(equation[equation.length-1])))
+        {
+                calculate(equation)
         }
-        // } else if ( equation.lenghth > 3){
-        //     if((equation[equation.length - 1] === "+") || (equation[equation.length - 1] === "-")){ //if the last operation is a plus or a minus
-        //         calculate(equation);
-        //     } else if (equation.length > 4) {
-        //     calculate(equation)
-        //     }
-        // } 
-        // console.log({formattedNumber})
-         console.log({equation})
     }
 }
 
 
 function calculate (x){
-    console.log({x} + " - calculate")
-    let result = 0;
-    if(x.length == 2) {
-        result = x[0];
-        screen.innerText = result;
+    console.log({...x})
+    let result = 0; 
+    (x[x.length-1] === "=") ? x.pop() : null; 
+    console.log({...x})
+    if(x.length == 1) {
+    result = x[0];
+    screen.innerText = result.toLocaleString();
+    equation =  [result];
+    formattedNumber = [];
+    } else if (x.length == 2) {
+        result = plusEqual(x);
+        screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
-    } else if (x.length == 4){
-        result = [twoNum(x), x[3]];
-        screen.innerText = result[0];
-        equation =  [...result];
-        formattedNumber = [];
-    //else if (x.length == 3){
-    //     if ((isNaN(x[2]))){
-    //         result = plusEqual(x);
-    //         screen.innerText = result;
-    //         equation =  [result];
-    //         formattedNumber = [];
-    //     }
-    } else if (x.length == 4){
+    }else if (x.length == 3){
         result = twoNum(x);
-        screen.innerText = result;
+        screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
-    }
+    } else if (x.length == 4){
+        if(isNaN(x[3])) {
+            result = [twoNum(x), x[3]];
+            console.log(result)
+            screen.innerText = result[0].toLocaleString();
+            equation =  [...result];
+            formattedNumber = [];
+        } else {
+            console.log("it here")
+           threeNum(x); 
+        }
+        
+    
+    }    
 }
 
 function twoNum (x) {
@@ -179,13 +181,10 @@ function plusEqual (x) {
     }
 }
 
-function threeNum (x) {
-    if(x.includes("X") || x.includes("/")){
-        if(x.indexOf("X") < x.indexOf("/")) {
-
-        }
-
-    }
+function threeNum (y) {
+    let reduce = y.slice(2,3)
+    console.log(reduce)
+    return twoNum(reduce)
 }
 
 numberpad.addEventListener("click", enterNumber)
