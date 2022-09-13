@@ -6,7 +6,6 @@ const equalButton = document.querySelector (".equal")
 let formattedNumber = ["0"]; //to hold the number the user entered until an operation is entered
 let operationIsPressed = false; // to track when an operation is entered
 function enterNumber (e) { //tells js what to do when numbers are entered, based on the state of the calculator
-
     if(e.target.className.includes("number")){ // only run this function if a number or a decimal is entered
         const digit = e.target.innerText; // digit represents the number the user entered
         if (operationIsPressed) {
@@ -38,15 +37,19 @@ function enterNumber (e) { //tells js what to do when numbers are entered, based
             } else {
                 screen.innerText += digit;
                 formattedNumber.push(digit)
-            }
+            }   
+        } 
+        clearButton.innerText = "C";
 
-
-            // equation.push(formattedNumber.join(""));
-
-            console.log(formattedNumber)
-            clearButton.innerText = "C";
-        }
-
+        // if(((equation[1] === "X") ||( equation[1] === "/")) && (equation.length == 2)){ // if the second item is multiply or divide
+        //     if(formattedNumber.length > 0){
+        //         equation.push(parseFloat(formattedNumber.join("")));
+        //         formattedNumber = [];
+        //     }
+        //     calculate(equation);
+        // }
+    
+            
     }
 }
 
@@ -95,7 +98,12 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
         } else if ((!isNaN(equation[0])) && (!isNaN(equation[1]))) {
             equation.shift();
         } else if ((e.target.innerText === "=")){ //if user pressed equal 
-            calculate(equation); 
+            if(equation[equation.length - 2] === "="){
+                equation.pop();
+                calculate(equation)
+            } else {
+                calculate(equation)
+            }
         } else if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
                 equation.splice(equation.length - 2,1) // remove the second to last item
         } else if((equation[1] === "X") ||( equation[1] === "/")){ // if the second item is multiply or divide
@@ -122,13 +130,18 @@ function calculate (x){
         screen.innerText = result;
         equation =  [result];
         formattedNumber = [];
-    } else if (x.length == 3){
-        if ((isNaN(x[2]))){
-            result = plusEqual(x);
-            screen.innerText = result;
-            equation =  [result];
-            formattedNumber = [];
-        }
+    } else if (x.length == 4){
+        result = twoNum(x);
+        screen.innerText = result;
+        equation =  [result];
+        formattedNumber = [];
+    //else if (x.length == 3){
+    //     if ((isNaN(x[2]))){
+    //         result = plusEqual(x);
+    //         screen.innerText = result;
+    //         equation =  [result];
+    //         formattedNumber = [];
+    //     }
     } else if (x.length == 4){
         result = twoNum(x);
         screen.innerText = result;
