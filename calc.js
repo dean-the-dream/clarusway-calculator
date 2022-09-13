@@ -3,12 +3,17 @@ let display = "0";
 const equation = [];
 const numberpad = document.querySelector(".numpad");
 const clearButton = document.querySelector(".clear");
-let formattedNumber = [];
+let formattedNumber = ["0"];
+let operationIsPressed = false;
 function enterNumber (e) {
-    console.log(e);
+     
     if(e.target.className.includes("number")){
-        if(formattedNumber.length < 9){
-            const digit = e.target.innerText;
+        const digit = e.target.innerText;
+        if (operationIsPressed) {
+            screen.innerText = "";
+            operationIsPressed = false;
+        }
+        if(formattedNumber.length < 10){
             if(screen.innerText === "0"){
                 if (digit === "0"){
 
@@ -45,23 +50,39 @@ function enterNumber (e) {
     }
 }
 
-function resetOperation(e) {
-    e.target.style = ``
-}
+// function resetOperation() {
+//     e.target.style = `background-color: #FE9F06;
+//                       color: white;`
+// }
 
-function pressClear (e) {
-    if(e.target.className.includes("clear")){   
-        screen.innerText = "0"
-        formattedNumber = [];
-        clearButton.innerText = "AC"
+// function engageOperation() {
+//     e.target.style = `background-color: white;`
+// }
+
+function pressClear (x) {
+    if(x.target.className.includes("clear")){  
+        if(clearButton.innerText == "C") {
+            screen.innerText = "0"
+            formattedNumber = [];
+            clearButton.innerHTML = "AC"
+        } else {
+            screen.innerText = "0"
+            formattedNumber = [];
+            equation = [];
+        }
     }
 }
 
-function addition () {
-    if(e.target.className.includes("number")){
-
+function enterOperation (e) {
+    if(e.target.className.includes("operation")){ 
+        operationIsPressed = true;
+        equation.push(parseFloat(formattedNumber.join("")));
+        equation.push(e.target.innerText)
+        formattedNumber = [];
+        console.log(operationIsPressed)
     }
 }
 
 numberpad.addEventListener("click", enterNumber)
 numberpad.addEventListener("click", pressClear)
+numberpad.addEventListener("click", enterOperation)
