@@ -30,12 +30,21 @@
 
 ## Key Features
 
-* There are currently no features.
+* Compound Calculations
+* Responsive number pad
+* Large numbers
 
 
 ## How To Use
 
-* open index.html in your browser, or click this link:
+* open index.html in your browser, or click this link: https://dean-the-dream.github.io/clarusway-calculator/
+
+## Bugs
+
+* % isn't functional 
+* +/- isn't functional
+* = doesn't work for more than 2 digits
+* the 0 digit should stretch to take up more space
 
 
 
