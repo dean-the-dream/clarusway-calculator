@@ -5,6 +5,8 @@ const clearButton = document.querySelector(".clear");
 const equalButton = document.querySelector (".equal")
 let formattedNumber = ["0"]; //to hold the number the user entered until an operation is entered
 let operationIsPressed = false; // to track when an operation is entered
+let isNeg = false;
+const minusButton = document.querySelector(".minus")
 function enterNumber (e) { //tells js what to do when numbers are entered, based on the state of the calculator
     if(e.target.className.includes("number")){ // only run this function if a number or a decimal is entered
         const digit = e.target.innerText; // digit represents the number the user entered
@@ -39,17 +41,7 @@ function enterNumber (e) { //tells js what to do when numbers are entered, based
                 formattedNumber.push(digit)
             }   
         } 
-        clearButton.innerText = "C";
-
-        // if(((equation[1] === "X") ||( equation[1] === "÷")) && (equation.length == 2)){ // if the second item is multiply or divide
-        //     if(formattedNumber.length > 0){
-        //         equation.push(parseFloat(formattedNumber.join("")));
-        //         formattedNumber = [];
-        //     }
-        //     calculate(equation);
-        // }
-    
-            
+        clearButton.innerText = "C";   
     }
 }
 
@@ -69,6 +61,15 @@ function engageOperation(x) { //change the state of the calculator when the user
     operationIsPressed = true; 
 }
 
+function posNeg(){
+    if(isNeg){
+        isNeg = false;
+        minusButton.innerText = "";
+    } else {
+        isNeg = true;
+        minusButton.innerText = "-";
+    }
+}
 function pressClear (x) {
     if(x.target.className.includes("clear")){
         if(clearButton.innerText == "C") {
@@ -89,7 +90,12 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
         engageOperation(e.target);
         (formattedNumber[0] === "0") ? formattedNumber.shift() : null;
         if(formattedNumber.length > 0){
-            equation.push(parseFloat(formattedNumber.join("")));
+            if(isNeg){
+                equation.push((parseFloat(formattedNumber.join("")))*-1);
+                posNeg;
+            } else{
+                equation.push(parseFloat(formattedNumber.join("")));
+            }
             formattedNumber = [];
         }
         equation.push(e.target.innerText);
@@ -185,7 +191,7 @@ function plusEqual (x) {
     }
 }
 
-function threeNum (y) {
+function threeNum (y) { //to add an equation with 2 numbers
     let reduce = y.slice(2,5)
     console.log("this is reduce")
     console.log(reduce)
@@ -195,3 +201,4 @@ function threeNum (y) {
 numberpad.addEventListener("click", enterNumber)
 numberpad.addEventListener("click", pressClear)
 numberpad.addEventListener("click", enterOperation)
+numberpad.addEventListener("click", posNeg)

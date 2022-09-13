@@ -43,6 +43,9 @@
 
 * % isn't functional 
 * +/- isn't functional
+* += doesn't work properly
+* button hover stops when js starts
+*
 
 
 
