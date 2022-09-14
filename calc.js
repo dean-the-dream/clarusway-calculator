@@ -46,14 +46,14 @@ function enterNumber (e) { //tells js what to do when numbers are entered, based
     }
 }
 
-function resetOperation() { //change the state of the calcultor once the operation is no longer being used
+function resetOperation() { //change all the operations back to the normal color
     let bttns = document.querySelectorAll(".orange");
     for(i of bttns)
     i.style = `background-color: #FE9F06; color: white;`
     operationIsPressed = false;
 }
 
-function engageOperation(x) { //change the state of the calculator when the user presses an operation
+function engageOperation(x) { //change the color of an operation when the user presses it
     resetOperation();
     if(!(x.className.includes("equal"))){
         x.style = `background-color: white; color: #FE9F06`
@@ -62,7 +62,7 @@ function engageOperation(x) { //change the state of the calculator when the user
     operationIsPressed = true; 
 }
 
-function posNeg(){
+function posNeg(){ //determine if the negative symbol is selected or not
     if(isNeg){
         isNeg = false;
         minusSign.innerText = "";
@@ -71,6 +71,7 @@ function posNeg(){
         minusSign.innerText = "-";
     }
 }
+
 function pressClear (x) {
     if(x.target.className.includes("clear")){
         if(clearButton.innerText == "C") {
@@ -130,37 +131,30 @@ function enterOperation (e) { //adds select operation to equation. determines if
 
 
 function calculate (x){ //calculates the equation sent from enterOperation
-    console.log({...x})
     let result = 0; 
     (x[x.length-1] === "=") ? x.pop() : null; 
-    console.log({...x})
     if(x.length == 1) {
-        console.log("length is 1")
         result = x[0];
         screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
     } else if(x.length == 2) {
-        console.log("length is 2")
         result = plusEqual(x);
         screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
     } else if (x.length == 3) {
-        console.log("length is 3")
         result = twoNum(x);
         screen.innerText = result.toLocaleString();
         equation =  [result];
         formattedNumber = [];
     } else if (x.length == 4){
-        console.log("length is 4 with operation")
         result = [twoNum(x), x[3]];
         console.log(result)
         screen.innerText = result[0].toLocaleString();
         equation =  [...result];
         formattedNumber = []; 
     }  else {
-        console.log("length is 5 with")
         result = threeNum(x);
         console.log(result)
         screen.innerText = result.toLocaleString();
@@ -195,10 +189,8 @@ function plusEqual (x) {
     }
 }
 
-function threeNum (y) { //to add an equation with 2 numbers
+function threeNum (y) { //to perform operations on an equation with 3 numbers
     let reduce = y.slice(2,5)
-    console.log("this is reduce")
-    console.log(reduce)
     return twoNum([...y.slice(0,2), twoNum(reduce)])
 }
 
