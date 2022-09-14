@@ -89,31 +89,31 @@ function pressClear (x) {
     }
 }
 
-function enterOperation (e) { //adds operation to equation. determines if quation is ready to be calculated
+function enterOperation (e) { //adds select operation to equation. determines if quation is ready to be calculated
     if(e.target.className.includes("operation")){ 
         engageOperation(e.target);
-        (formattedNumber[0] === "0") ? formattedNumber.shift() : null;
-        if(formattedNumber.length > 0){
-            if(isNeg){
-                equation.push((parseFloat(formattedNumber.join("")))*-1);
+        (formattedNumber[0] === "0") ? formattedNumber.shift() : null; //to remove the initial zero from the html file
+        if(formattedNumber.length > 0){ // if a number was pressed 
+            if(isNeg){ // if negative was pressed
+                equation.push((parseFloat(formattedNumber.join("")))*-1); //change the number to negative number, add it to the equation
                 posNeg();
             } else{
-                equation.push(parseFloat(formattedNumber.join("")));
+                equation.push(parseFloat(formattedNumber.join(""))); //add the number to the quation
             }
-            formattedNumber = [];
+            formattedNumber = []; //clear the queue for the next entry
         }
-        equation.push(e.target.innerText);
+        equation.push(e.target.innerText); // add the operation to the equation
 
         if(isNaN((parseFloat(equation[0])))){ // if the first array item is not a number
             equation.shift(); // remove the first item 
-        } else if ((!isNaN(equation[0])) && (!isNaN(equation[1]))) {
-            equation.shift();
-        } else if ((e.target.innerText === "=")){ //if user pressed equal 
-            if(equation[equation.length - 2] === "="){
-                equation.pop();
-                calculate(equation)
-            } else {
-                calculate(equation)
+        } else if ((!isNaN(equation[0])) && (!isNaN(equation[1]))) { // if the equation has 2 consecutive numbers
+            equation.shift(); //remove the first number
+        } else if ((e.target.innerText === "=")){ //if user presses equal 
+            if(equation[equation.length - 2] === "="){ //if there are 2 consective equals sign
+                equation.pop(); //remove on equal signs
+                calculate(equation) //calculate the euquation
+            } else { //if there is only one equal
+                calculate(equation) // calculate the equation
             }
         } else if ((isNaN(equation[equation.length - 1]) && isNaN(equation[equation.length - 2]))) { //if the last two items are symbols
                 equation.splice(equation.length - 2,1) // remove the second to last item
@@ -129,7 +129,7 @@ function enterOperation (e) { //adds operation to equation. determines if quatio
 }
 
 
-function calculate (x){
+function calculate (x){ //calculates the equation sent from enterOperation
     console.log({...x})
     let result = 0; 
     (x[x.length-1] === "=") ? x.pop() : null; 
@@ -168,7 +168,7 @@ function calculate (x){
     }
 }
 
-function twoNum (x) {
+function twoNum (x) { // to perform an operation on an equation with 2 numbers (x + x)
     switch (x[1]) {
         case "+":
            return x[0] + x[2]
