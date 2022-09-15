@@ -70,12 +70,12 @@ function engageOperation(x) { //change the color of an operation when the user p
 }
 
 function posNeg(){ //determine if the negative symbol is selected or not
-    if(isNeg){
-        isNeg = false;
-        minusSign.innerText = "";
-    } else {
-        isNeg = true;
-        minusSign.innerText = "-";
+    if(isNeg){ //if negative is engaged
+        isNeg = false; //change it to positive
+        minusSign.innerText = ""; //clear the minus sign from the screen
+    } else { //if negative is not alread engaged
+        isNeg = true; // change it to negative
+        (equation[0] < 0) ? minusSign.innerText = "" : minusSign.innerText = "-"; //if the displayed number is already negative, don't display the negative sign, otherwise display it
     }
 }
 
