@@ -48,15 +48,22 @@ function enterNumber (e) { //tells js what to do when numbers are entered, based
 
 function resetOperation() { //change all the operations back to the normal color
     let bttns = document.querySelectorAll(".orange");
-    for(i of bttns)
-    i.style = `background-color: #FE9F06; color: white;`
+    for(i of bttns){
+        // i.style = `background-color: #FE9F06; color: white;`
+        i.style = null;
+        // i.style.backgroundColor = "#FE9F06;";
+        // i.style.color = "white;"
+    }
+    
     operationIsPressed = false;
 }
 
 function engageOperation(x) { //change the color of an operation when the user presses it
-    resetOperation();
+     resetOperation();
     if(!(x.className.includes("equal"))){
         x.style = `background-color: white; color: #FE9F06`
+        // i.style.backgroundColor = "white;";
+        // i.style.color = "#FE9F06;"
         
     }
     operationIsPressed = true; 
