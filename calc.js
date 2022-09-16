@@ -100,7 +100,7 @@ function pressClear (x) {
 function enterOperation (e) { //adds select operation to equation. determines if quation is ready to be calculated
     if(e.target.className.includes("operation")){ 
         engageOperation(e.target);
-        (formattedNumber[0] === "0") ? formattedNumber.shift() : null; //to remove the initial zero from the html file
+        ((formattedNumber[0] === "0") && (formattedNumber.length > 1)) ? formattedNumber.shift() : null; //to remove the initial zero from the html file
         if(formattedNumber.length > 0){ // if a number was pressed 
             if(isNeg){ // if negative was pressed
                 equation.push((parseFloat(formattedNumber.join("")))*-1); //change the number to negative number, add it to the equation
