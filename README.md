@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a><img src="https://lh3.googleusercontent.com/9ZPgt3u2zSkY0USqI-eUemmdKe80xEUu4J5D7OqMboZPwm3t6t5GVizAnWm-o4lxvsr1NDCspSw56gtR9vwYTYlyeVumKgMp6KlNUJxkOjoxSeBmfEWnTvwfgtIJTUORtxTwxYBNtg=w2400" alt="A cool logo I found online." width="200"></a>
+  <a><img src="https://lh3.googleusercontent.com/9ZPgt3u2zSkY0USqI-eUemmdKe80xEUu4J5D7OqMboZPwm3t6t5GVizAnWm-o4lxvsr1NDCspSw56gtR9vwYTYlyeVumKgMp6KlNUJxkOjoxSeBmfEWnTvwfgtIJTUORtxTwxYBNtg=w2400" alt="Clarusway Logo" width="200"></a>
   <!--Link for White Clarusway Logo: https://lh3.googleusercontent.com/1ENm2axvkcgNtZonqjbW-Zgbe6XXSIBYrGgCj8p1EL46ODE5v0gzroYC8H-3IDPOI0otNvQxGCnq5Hvrq45fK6ReDDO0knbDs3V-q3LExa92DLp26OhmfUUgQTfGnAbfll8rWSFb3g=w2400 -->
   
   Calculator
@@ -42,10 +42,9 @@
 ## Bugs
 
 * % isn't functional 
-* +/- isn't functional
-* += doesn't work properly
-* button hover stops when js starts
-*
+* equal button doesn't function properly
+* negative button doesn't show when the previous value is negative
+
 
 
 
